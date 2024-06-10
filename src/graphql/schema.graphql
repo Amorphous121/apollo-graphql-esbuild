@@ -1,0 +1,43 @@
+type Query {
+    books: [Book!]!
+    authors: [Author!]!
+}
+
+type Mutation {
+    createBook(payload: BookInput!): Book!
+    createAuthor(payload: AuthorInput!): Author!
+    register(username: String!, password: String!): User!
+    login(username: String!, password: String!): LoginResponse
+}
+
+type Book {
+    _id: ID
+    title: String
+    author: Author!
+}
+
+type User {
+    _id: ID!
+    username: String
+    role: String
+}
+
+type Author {
+    _id: ID
+    name: String
+    books: [Book!]!
+}
+
+type LoginResponse {
+    message: String
+    accessToken: String
+}
+
+input AuthorInput {
+    name: String
+}
+
+input BookInput {
+    title: String
+    author: String!
+}
